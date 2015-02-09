@@ -1,0 +1,50 @@
+﻿<Window x:Class="DataTemplateSelectorDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:DataTemplateSelectorDemo"        
+        Title="DataTemplateSelector" Height="350" Width="525">
+    <Window.Resources>      
+        <local:DayOfWeekEnumConverter x:Key="EnumConverter"/>
+        
+        <DataTemplate x:Key="StringTemplate">
+            <TextBox Text="{Binding Value, Mode=TwoWay}" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="DateTimeTemplate">
+            <DatePicker SelectedDate="{Binding Value, Mode=TwoWay}" />
+        </DataTemplate>
+        
+        <DataTemplate x:Key="DayOfWeekTemplate">
+            <ComboBox SelectedItem="{Binding Value, Mode=TwoWay, Converter={StaticResource EnumConverter}}" ItemsSource="{Binding DayOfWeekArray}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="MoneyTemplate">
+            <TextBox Text="{Binding Value, StringFormat='c', Mode=TwoWay}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ListTemplate">
+            <ListBox ItemsSource="{Binding Value}" />
+        </DataTemplate>
+    
+    </Window.Resources>
+    
+    <DataGrid ItemsSource="{Binding Data}" AutoGenerateColumns="False"
+              HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"
+              CanUserAddRows="False" RowHeaderWidth="0" Margin="10" >
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="ID" Binding="{Binding ID}" IsReadOnly="True" />
+            <DataGridTemplateColumn Header="Detail">
+                <DataGridTemplateColumn.CellTemplateSelector>
+                    <local:CellDataTemplateSelector 
+			            StringTemplate="{StaticResource StringTemplate}"
+			            DateTimeTemplate="{StaticResource DateTimeTemplate}"
+                        DayOfWeekTemplate="{StaticResource DayOfWeekTemplate}"
+			            MoneyTemplate="{StaticResource MoneyTemplate}" 
+                        ListTemplate="{StaticResource ListTemplate}" />
+                </DataGridTemplateColumn.CellTemplateSelector>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" />
+        </DataGrid.Columns>
+    </DataGrid>
+</Window>

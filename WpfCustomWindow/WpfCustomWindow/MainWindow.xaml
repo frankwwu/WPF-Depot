@@ -1,0 +1,10 @@
+﻿<local:WindowExt x:Class="WpfCustomWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfCustomWindow"
+        WindowStartupLocation="CenterScreen" x:Name="win"
+        Title="Show/Hide the Close Button in the Window" >
+    <Grid >
+        <CheckBox IsChecked="{Binding ShowCloseButton, ElementName=win, Mode=TwoWay}" Content="Show Close Button" Margin="8"/>
+    </Grid>
+</local:WindowExt>

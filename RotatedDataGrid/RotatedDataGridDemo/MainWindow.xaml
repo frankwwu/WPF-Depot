@@ -1,0 +1,24 @@
+﻿<Window x:Class="RotatedDataGridDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"        
+        xmlns:local="clr-namespace:RotatedDataGridDemo"
+        Title="Rotated DataGrid Demo" Height="350" Width="600">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./RotatedDataGrid.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <DataGrid ItemsSource="{Binding Data}"
+                  LayoutTransform="{StaticResource RotatedLayoutTransform}"
+                  ColumnHeaderStyle="{StaticResource RotatedColumnHeaderStyle}"
+                  CellStyle="{StaticResource RotatedCellStyle}" 
+                  HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"
+                  CanUserReorderColumns="False" CanUserResizeColumns="False"
+                  CanUserAddRows="False" RowHeaderWidth="0" />
+    </Grid>
+</Window>

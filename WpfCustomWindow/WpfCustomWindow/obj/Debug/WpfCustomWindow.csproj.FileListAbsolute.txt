@@ -1,0 +1,15 @@
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\bin\Debug\WpfCustomWindow.exe
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\bin\Debug\WpfCustomWindow.pdb
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\WpfCustomWindow.csprojResolveAssemblyReference.cache
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\MainWindow.g.cs
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\App.g.cs
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\WpfCustomWindow_MarkupCompile.cache
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\WpfCustomWindow_MarkupCompile.lref
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\MainWindow.baml
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\Themes\Generic.baml
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\WpfCustomWindow.g.resources
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\WpfCustomWindow.Properties.Resources.resources
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\WpfCustomWindow.csproj.GenerateResource.Cache
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\WpfCustomWindow.exe
+C:\Users\Frank\Documents\github\WPF\WpfCustomWindow\WpfCustomWindow\obj\Debug\WpfCustomWindow.pdb

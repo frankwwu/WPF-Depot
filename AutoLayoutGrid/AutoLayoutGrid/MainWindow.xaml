@@ -1,0 +1,23 @@
+﻿<Window x:Class="AutoLayoutGrid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"    
+        xmlns:local="clr-namespace:AutoLayoutGrid"
+        Title="Auto Layout Grid" Height="400" Width="600">
+
+    <UserControl>
+        <i:Interaction.Behaviors>
+            <local:AutoLayoutGridBehavior />
+        </i:Interaction.Behaviors>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="10" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="2*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="ABC" />
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <TextBlock Text="XYZ" Grid.Column="2"/>
+        </Grid>
+    </UserControl>
+</Window>

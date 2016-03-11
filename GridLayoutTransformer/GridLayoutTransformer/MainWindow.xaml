@@ -18,7 +18,8 @@
             <ColumnDefinition Width="*" MinWidth="10"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="ABC"  Margin="8"/>
-        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Style="{DynamicResource TransformableGridSplitterStyle}" />
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Style="{DynamicResource TransformableGridSplitterStyle}" 
+                      local:GridLayoutTransformer.IsRotated="{Binding IsLayoutRotated}" />
         <TextBlock Grid.Column="2" Text="XYZ"  Margin="8" />
     </Grid>
 </Window>

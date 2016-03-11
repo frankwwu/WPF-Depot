@@ -22,9 +22,9 @@ namespace GridLayoutTransform
             DependencyProperty.RegisterAttached("IsRotated", typeof(bool), typeof(GridLayoutTransformer), new UIPropertyMetadata(false, OnIsRotatedChanged));
 
         static void OnIsRotatedChanged(DependencyObject depObj, DependencyPropertyChangedEventArgs e)
-        {           
-            ToggleButton tgl = depObj as ToggleButton;
-            Grid grid = FindParent<Grid>(tgl);
+        {
+            FrameworkElement ele = depObj as FrameworkElement;
+            Grid grid = FindParent<Grid>(ele);
 
             if (grid == null)
                 return;

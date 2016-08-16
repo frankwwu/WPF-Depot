@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 
 namespace MVVM_MEF
 {
@@ -11,10 +12,11 @@ namespace MVVM_MEF
         public ViewModel(IService service)
         {
             _service = service;
+            DataItems = service.DataItems;
         }
 
         public string Title { get { return "MVVM + MEF"; } }
 
-        public string Data { get { return _service.Data; } }
+        public List<Model> DataItems { get; private set; }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MVVM_MEF
 {
     public interface IService
     {
-        string Data { get; }
+        List<Model> DataItems { get; }
     }
 }

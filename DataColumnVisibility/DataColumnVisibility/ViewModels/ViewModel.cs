@@ -1,68 +1,53 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.Windows.Data;
 using DataColumnVisibility.Models;
 using DataColumnVisibility.Services;
 
 namespace DataColumnVisibility.ViewModels
 {
-    [Export(typeof(ViewModel))]
     public class ViewModel : INotifyPropertyChanged
     {
-        private readonly IDataService _dataService;
-        private readonly ObservableCollection<DataItem> model;
-        private bool isNameVisible = true;
-        private bool isDescriptionVisible = true;
-        private bool isSelectedVisible = true;
+        private IDataService dataService;
+        private readonly ObservableCollection<DataItem> _model;
         static DataGridContextHelper dc = new DataGridContextHelper();
 
-        [ImportingConstructor]
-        public ViewModel(IDataService dataService)
+        public ViewModel()
         {
-            _dataService = dataService;
-            this.model = _dataService.GetModel();
-            this.DataItemsCV = new ListCollectionView(model);
+            dataService = new DataService();
+            _model = dataService.GetModel();
+            DataItemsCV = new ListCollectionView(_model);
         }
 
-        public ICollectionView DataItemsCV { get; set; }
+        public ICollectionView DataItemsCV { get; private set; }
 
-        public bool IsNameVisible
+        private bool isIdColVisible = true;
+
+        public bool IsIdColVisible
         {
             get
             {
-                return isNameVisible;
+                return isIdColVisible;
             }
             set
             {
-                isNameVisible = value;
-                NotifyPropertyChanged("IsNameVisible");
+                isIdColVisible = value;
+                NotifyPropertyChanged("IsIdColVisible");
             }
         }
 
-        public bool IsDescriptionVisible
-        {
-            get
-            {
-                return isDescriptionVisible;
-            }
-            set
-            {
-                isDescriptionVisible = value;
-                NotifyPropertyChanged("IsDescriptionVisible");
-            }
-        }
+        private bool isNameColVisible = true;
 
-        public bool IsSelectedVisible
+        public bool IsNameColVisible
         {
             get
             {
-                return isSelectedVisible;
+                return isNameColVisible;
             }
             set
             {
-                isSelectedVisible = value;
-                NotifyPropertyChanged("IsSelectedVisible");
+                isNameColVisible = value;
+                NotifyPropertyChanged("IsNameColVisible");
             }
         }
 

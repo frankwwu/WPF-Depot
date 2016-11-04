@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel.Composition;
+﻿using System.Collections.ObjectModel;
 using DataColumnVisibility.Models;
 
 namespace DataColumnVisibility.Services
 {
-    /// <summary>
-    /// Dummy data service class. Provides a dummy data model.
-    /// </summary>
-    [Export(typeof(IDataService))]
     public class DataService : IDataService
     {
         private ObservableCollection<DataItem> model;
@@ -18,11 +12,10 @@ namespace DataColumnVisibility.Services
             if (model == null)
             {
                 model = new ObservableCollection<DataItem>();
-
-                for (int i = 0; i < 20; i++)
+                for (int i = 1; i < 10; i++)
                 {
-                    model.Add(new DataItem() { Id = i, Name = string.Format( "Name {0}  ", i), Description = string.Format("Description {0}  ", i)});
-                }              
+                    model.Add(new DataItem() { Id = i, Name = string.Format("Item {0}", i), Description = string.Format("Description {0}", i) });
+                }
             }
 
             return model;

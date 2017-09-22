@@ -1,0 +1,77 @@
+﻿<Window x:Class="ResizableExpander.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Resizable Expander Demo" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Expander Grid.Column="0" ExpandDirection="Right" IsExpanded="True">
+            <Expander.Header>
+                <TextBlock Text="Left Expander">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            <Expander.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" MinWidth="5" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinWidth="100" Text="ResizeBehavior: PreviousAndCurrent"
+                               Background="LightGreen" Padding="8"/>
+                    <GridSplitter Grid.Column="1" Width="5" ResizeBehavior="PreviousAndCurrent" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+                </Grid>
+            </Expander.Content>
+        </Expander>
+
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Resizable Expander Demo" FontSize="30" Foreground="Brown" HorizontalAlignment="Stretch" Background="LightYellow" Padding="8"/>
+            <Expander Grid.Row="1" ExpandDirection="Up" IsExpanded="True">
+                <Expander.Header>
+                    <TextBlock Text="Botton Expander" />
+                </Expander.Header>
+                <Expander.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" MinHeight="5" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <GridSplitter Height="5" ResizeBehavior="CurrentAndNext" ResizeDirection="Rows" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinHeight="100" Text="ResizeBehavior: CurrentAndNext" 
+                                   Background="PowderBlue" Padding="8" />
+                    </Grid>
+                </Expander.Content>
+            </Expander>
+        </Grid>
+
+        <Expander Grid.Column="2" ExpandDirection="Left" IsExpanded="True">
+            <Expander.Header>
+                <TextBlock Text="Right Expander">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            <Expander.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="5" />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <GridSplitter Width="5" ResizeBehavior="CurrentAndNext" ResizeDirection="Columns" HorizontalAlignment="Stretch"/>
+                    <TextBlock Grid.Column="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MinWidth="100" Text="ResizeBehavior: CurrentAndNext"
+                               Background="Pink" Padding="8" />
+                </Grid>
+            </Expander.Content>
+        </Expander>
+    </Grid>
+</Window>

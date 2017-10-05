@@ -8,7 +8,7 @@ namespace DataGridCopy.Behaviors
     // Usage:
     //<DataGrid.ContextMenu>
     //    <ContextMenu >
-    //        <MenuItem Header="Copy to Clipboard" >
+    //        <MenuItem Header="Copy to clipboard" >
     //            <i:Interaction.Behaviors>
     //                <beh:DataGridCopyMenuBehavior />
     //            </i:Interaction.Behaviors>
@@ -38,13 +38,15 @@ namespace DataGridCopy.Behaviors
                 DataGrid dg = (mi.Parent as ContextMenu).PlacementTarget as DataGrid;
                 if (dg != null)
                 {
+                    DataGridSelectionMode selectionMode = dg.SelectionMode;
+                    dg.SelectionMode = DataGridSelectionMode.Extended;
                     dg.SelectAllCells();
                     dg.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
                     ApplicationCommands.Copy.Execute(null, dg);
                     dg.UnselectAllCells();
+                    dg.SelectionMode = selectionMode;
                 }
             }
         }
     }
 }
-

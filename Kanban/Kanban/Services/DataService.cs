@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.IO;
 using Kanban.Models;
 
 namespace Kanban.Services
@@ -16,11 +14,11 @@ namespace Kanban.Services
 
         private List<WorkItem> _workItems;
 
-        public List<WorkItem> WorkItems 
+        public List<WorkItem> WorkItems
         {
             get
             {
-                if(_workItems == null)
+                if (_workItems == null)
                 {
                     _workItems = new List<WorkItem>();
                     _workItems.Add(new WorkItem() { Id = 20, Status = Statuses[0], Person = Persons[0], Title = "Navigation across swimlanes" });
@@ -37,12 +35,12 @@ namespace Kanban.Services
                     _workItems.Add(new WorkItem() { Id = 82, Status = Statuses[2], Person = Persons[2], Title = "Add answers to overleaf" });
                 }
                 return _workItems;
-            }            
+            }
         }
 
         private List<Person> _persons;
 
-        public List<Person> Persons 
+        public List<Person> Persons
         {
             get
             {
@@ -56,7 +54,7 @@ namespace Kanban.Services
                     _persons.Add(new Person() { Id = 5, GivenName = "Luke", Surname = "Schrodinger" });
                 }
                 return _persons;
-            }            
+            }
         }
 
         private List<Status> _statuses;

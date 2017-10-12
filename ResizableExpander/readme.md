@@ -1,3 +1,3 @@
 ## Resizable Expander
 
-![](figures/ResizableExpander.png)
+![](figures/ResizableExpander.gif)

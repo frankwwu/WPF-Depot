@@ -1,1 +1,4 @@
 ## Kanban
+
+
+![](figures/kanban.png)

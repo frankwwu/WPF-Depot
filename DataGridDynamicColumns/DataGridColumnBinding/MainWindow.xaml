@@ -1,0 +1,13 @@
+﻿<Window x:Class="DataGridColumnBinding.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dp="clr-namespace:DataGridColumnBinding"
+        Title="{Binding Title}" >
+    <StackPanel>
+        <DataGrid ItemsSource="{Binding DataGridModel.DataTable}" SelectionUnit="Cell" AutoGenerateColumns="False"
+                  CurrentCell="{Binding DataGridModel.CurrentCell, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" RowHeaderWidth="0" 
+                  AllowDrop="False" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray"
+                  dp:DataGridDynamicColumns.BindableColumns="{Binding DataGridModel.ColumnCollection}" Margin="10"/>
+    </StackPanel>
+</Window>

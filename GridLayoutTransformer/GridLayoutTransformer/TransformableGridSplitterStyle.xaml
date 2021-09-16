@@ -19,11 +19,38 @@
                     <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
                         <StackPanel Orientation="Horizontal">
                             <ToggleButton x:Name="toggle" IsChecked="{Binding IsLayoutRotated, Mode=TwoWay}" 
-                                     local:GridLayoutTransformer.IsRotated="{Binding IsChecked, Mode=TwoWay, ElementName=toggle}"
-                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Rotate layout"
-                                      VerticalAlignment="Center" Cursor="Arrow" Width="5" Height="40" />
+                                          local:GridLayoutTransformer.IsRotated="{Binding IsChecked, Mode=TwoWay, ElementName=toggle}"
+                                          HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Rotate layout"
+                                          Background="{DynamicResource MahApps.Brushes.Accent2}"
+                                          VerticalAlignment="Center" Cursor="Arrow" Width="5" Height="40" >
+                                <ToggleButton.Style>
+                                    <Style TargetType="ToggleButton">
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="ToggleButton">
+                                                    <Grid>
+                                                        <Grid Background="{TemplateBinding Background}" />
+                                                        <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}"
+                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              Margin="{TemplateBinding Padding}"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ToggleButton.Style>
+                            </ToggleButton>
                         </StackPanel>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="toggle" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="toggle" Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -14,12 +14,12 @@ namespace GridLayoutTransform
         {
             InitializeComponent();
             this.DataContext = this;
-        }       
+        }
 
         public bool IsLayoutRotated
         {
             get { return Properties.Settings.Default.IsLayoutRotated; }
-            set { Properties.Settings.Default.IsLayoutRotated = value; Properties.Settings.Default.Save();  NotifyPropertyChanged(); }
+            set { Properties.Settings.Default.IsLayoutRotated = value; Properties.Settings.Default.Save(); NotifyPropertyChanged(); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

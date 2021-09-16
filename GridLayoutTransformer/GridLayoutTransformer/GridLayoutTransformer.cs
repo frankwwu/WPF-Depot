@@ -1,9 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-
 namespace GridLayoutTransform
 {
     public class GridLayoutTransformer
@@ -100,11 +98,11 @@ namespace GridLayoutTransform
         }
 
         public static T FindParent<T>(DependencyObject child) where T : DependencyObject
-        {         
+        {
             DependencyObject parentObject = VisualTreeHelper.GetParent(child);
 
             if (parentObject == null) return null;
-         
+
             T parent = parentObject as T;
             if (parent != null)
                 return parent;

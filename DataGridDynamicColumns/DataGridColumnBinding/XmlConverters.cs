@@ -31,6 +31,7 @@ namespace DataGridColumnBinding
             foreach (XElement col in grid_columns)
             {
                 string name = col.GetString("name");
+                string header = col.GetString("header");
                 bool editable = col.GetBool("editable");
                 string data_type = col.GetString("data_type");
                 int precision = 0;
@@ -66,10 +67,11 @@ namespace DataGridColumnBinding
                 if (editable)
                 {
                     DataGridTemplateColumn dgt = new DataGridTemplateColumn();
-                    dgt.Header = titleCase;
+                    dgt.Header = header;
                     dgt.IsReadOnly = !editable;
                     DataTemplate dt = new DataTemplate();
                     dt.VisualTree = new FrameworkElementFactory(typeof(TextBlock));
+                    dt.VisualTree.SetBinding(TextBlock.TextProperty, new Binding(titleCase));
                     dt.VisualTree.SetValue(TextBlock.BackgroundProperty, Brushes.LightYellow);
                     dt.VisualTree.SetValue(TextBlock.ForegroundProperty, Brushes.Black);
                     dgt.CellTemplate = dt;
@@ -100,7 +102,7 @@ namespace DataGridColumnBinding
                         dgt.CellEditingTemplate = edt;
                         model.ColumnCollection.Add(dgt);
                     }
-                    else if (dataCol.DataType == typeof(string))
+                    else if (dataCol.DataType.Name.Equals(typeof(string).Name))
                     {
                         DataTemplate edt = new DataTemplate();
                         edt.VisualTree = new FrameworkElementFactory(typeof(TextBox));
@@ -114,7 +116,7 @@ namespace DataGridColumnBinding
                 else
                 {
                     DataGridTextColumn dgc = new DataGridTextColumn();
-                    dgc.Header = titleCase;
+                    dgc.Header = header;
                     dgc.IsReadOnly = !editable;
                     dgc.Binding = new Binding(titleCase);
                     if (dataCol.DataType == typeof(Int64) || dataCol.DataType == typeof(Int32))
@@ -190,4 +192,3 @@ namespace DataGridColumnBinding
         #endregion Public Methods
     }
 }
-

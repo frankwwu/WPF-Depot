@@ -1,23 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<request> 
-  <grid name="input">   
-    <grid_columns>
-      <column name="cost" data_type="bigint" editable="1" />
-      <column name="currency" data_type="char(3)" editable="0" />
-      <column name="rook" data_type="bigint" editable="0" />
-      <column name="saturation" data_type="decimal(5,3)" editable="1" />
-      <column name="edge" data_type="bigint" editable="0" />
-      <column name="size" data_type="bigint" editable="0" />
-      <column name="factor" data_type="decimal(5,3)" editable="1" />
-      <column name="project" data_type="bigint" editable="1" />
-    </grid_columns>
-    <grid_rows>
-      <row cost="100000" currency="EUR" rook="39027" saturation="1.000" edge="43202" size="43274" factor="1.000" project="47904" />
-      <row cost="125000" currency="EUR" rook="46154" saturation="1.000" edge="51092" size="51327" factor="1.000" project="56818" />
-      <row cost="150000" currency="EUR" rook="53235" saturation="1.000" edge="58931" size="59317" factor="1.000" project="65663" />
-      <row cost="200000" currency="EUR" rook="67204" saturation="1.000" edge="74394" size="75103" factor="1.000" project="83139" />
-      <row cost="400000" currency="EUR" rook="115700" saturation="1.000" edge="128079" size="129300" factor="1.000" project="143135" />
-      <row cost="600000" currency="EUR" rook="162168" saturation="1.000" edge="179519" size="181229" factor="1.000" project="200620" />
-    </grid_rows>
-  </grid>  
+<request>
+	<grid name="input">
+		<grid_columns>
+			<column name="area_name" header="Area Name" data_type="char(100)" editable="1" />
+			<column name="price" header="Price ($)" data_type="bigint" editable="1" />
+			<column name="lat" header="Latitude" data_type="decimal(9,6)" editable="0" />
+			<column name="lng" header="Longitude" data_type="decimal(9,6)" editable="0" />
+		</grid_columns>
+		<grid_rows>
+			<row area_name="Richview" price="999888" lat="43.679882" lng="-79.544266" />
+			<row area_name="Chedoke Park B" price="399900" lat="43.25" lng="-79.904396" />
+			<row area_name="Ainslie Wood East" price="479000" lat="43.25169" lng="-79.919357" />
+			<row area_name="Greenford" price="285900" lat="43.227161" lng="-79.767403" />
+			<row area_name="Downtown" price="362000" lat="43.651478" lng="-79.368118" />
+			<row area_name="Old East York" price="1488000" lat="43.686375" lng="-79.328918" />
+		</grid_rows>
+	</grid>
 </request>

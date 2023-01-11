@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResizableExpander", "ResizableExpander\ResizableExpander.csproj", "{C55EC422-C38C-42F9-9742-8DE1F76B2FF0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResizableExpander", "ResizableExpander\ResizableExpander.csproj", "{B97AFC3C-9CAA-4101-94F3-7E6EE7F7CCCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C55EC422-C38C-42F9-9742-8DE1F76B2FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C55EC422-C38C-42F9-9742-8DE1F76B2FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C55EC422-C38C-42F9-9742-8DE1F76B2FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C55EC422-C38C-42F9-9742-8DE1F76B2FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B97AFC3C-9CAA-4101-94F3-7E6EE7F7CCCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97AFC3C-9CAA-4101-94F3-7E6EE7F7CCCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97AFC3C-9CAA-4101-94F3-7E6EE7F7CCCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97AFC3C-9CAA-4101-94F3-7E6EE7F7CCCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {448464BC-A743-4728-AA99-C464F02946EA}
 	EndGlobalSection
 EndGlobal

@@ -10,7 +10,6 @@ namespace PopupApp
         public View()
         {
             InitializeComponent();
-            this.DataContext = new ViewModel();
         }
     }
 }

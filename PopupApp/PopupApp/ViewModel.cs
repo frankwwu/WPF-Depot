@@ -19,6 +19,7 @@ namespace PopupApp
         public List<Tuple<string, Brush>> BrushList { get; private set; }
 
         private Tuple<string, Brush> selectedBrush;
+
         public Tuple<string, Brush> SelectedBrush
         {
             get

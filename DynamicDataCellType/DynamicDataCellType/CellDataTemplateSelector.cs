@@ -3,7 +3,7 @@ using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DataTemplateSelectorDemo
+namespace DynamicDataCellType
 {
     public class CellDataTemplateSelector : DataTemplateSelector
     {
@@ -58,3 +58,4 @@ namespace DataTemplateSelectorDemo
         }
     }
 }
+

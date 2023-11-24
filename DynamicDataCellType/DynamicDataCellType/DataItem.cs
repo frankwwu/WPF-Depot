@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataTemplateSelectorDemo
+namespace DynamicDataCellType
 {
     public class DataItem
     {

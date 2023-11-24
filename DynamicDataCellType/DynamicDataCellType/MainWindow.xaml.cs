@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 
-namespace DataTemplateSelectorDemo
+namespace DynamicDataCellType
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

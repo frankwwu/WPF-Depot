@@ -21,12 +21,12 @@ namespace Kanban.Mvvm
 
         public bool CanExecute(object parameter)
         {
-            return canExecuteFunc((T) parameter);
+            return canExecuteFunc((T)parameter);
         }
 
         public void Execute(object parameter)
         {
-            executeAction((T) parameter);
+            executeAction((T)parameter);
         }
 
         /// <summary>

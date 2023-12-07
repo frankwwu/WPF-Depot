@@ -1,8 +1,7 @@
 ﻿<Window x:Class="Kanban.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        Title="TFS Kanban View" >
+        Title="Kanban View" >
 
     <Grid>
         <ListBox ItemsSource="{Binding WorkItemsCV}" HorizontalContentAlignment="Stretch" Background="FloralWhite">
@@ -47,16 +46,16 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Id}" FontWeight="Bold"/>
-                                <Button Grid.Column="1" Content="{Binding Title}" 
+                                <Button Grid.Column="1" Content="{Binding Title}"
                                         Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, Path=DataContext.EditCommand}"
                                         CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Content}"
-                                        Margin="8,0">
+                                        MaxWidth="300" Margin="8,0">
                                     <Button.Style>
                                         <Style TargetType="Button">
                                             <Setter Property="Template">
                                                 <Setter.Value>
                                                     <ControlTemplate TargetType="Button">
-                                                        <TextBlock Text="{TemplateBinding Content}">
+                                                        <TextBlock Text="{TemplateBinding Content}" TextWrapping="Wrap">
                                                             <TextBlock.Style>
                                                                 <Style TargetType="TextBlock">
                                                                     <Style.Triggers>
@@ -114,9 +113,9 @@
                                 </Button>
                             </Grid>
                             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="8,4,8,8">
-                                <TextBlock Text="{Binding Person.Initial}" Background="Orchid" Foreground="White"
+                                <TextBlock Text="{Binding User.Initial}" Background="Orchid" Foreground="White"
                                            Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}" Padding="4" />
-                                <TextBlock Text="{Binding Person.FullName}" VerticalAlignment="Center" Margin="8,0"/>
+                                <TextBlock Text="{Binding User.FullName}" VerticalAlignment="Center" Margin="8,0"/>
                             </StackPanel>
                         </Grid>
                     </Border>

@@ -10,6 +10,6 @@ namespace Kanban.Models
   
         public Status Status { get; set; }
 
-        public Person Person { get; set; }
+        public User User { get; set; }
     }
 }

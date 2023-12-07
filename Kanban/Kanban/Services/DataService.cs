@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using Bogus;
 using Kanban.Models;
 
 namespace Kanban.Services
@@ -8,8 +10,13 @@ namespace Kanban.Services
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class DataService : IDataService
     {
+        private Faker _faker;
+        private Random _rnd;
+
         public DataService()
         {
+            _faker = new Faker("en");
+            _rnd = new Random();
         }
 
         private List<WorkItem> _workItems;
@@ -21,39 +28,30 @@ namespace Kanban.Services
                 if (_workItems == null)
                 {
                     _workItems = new List<WorkItem>();
-                    _workItems.Add(new WorkItem() { Id = 20, Status = Statuses[0], Person = Persons[0], Title = "Navigation across swimlanes" });
-                    _workItems.Add(new WorkItem() { Id = 22, Status = Statuses[1], Person = Persons[1], Title = "Bug insurance" });
-                    _workItems.Add(new WorkItem() { Id = 24, Status = Statuses[2], Person = Persons[2], Title = "Multiple configuration files" });
-                    _workItems.Add(new WorkItem() { Id = 25, Status = Statuses[0], Person = Persons[3], Title = "Conditional formatting" });
-                    _workItems.Add(new WorkItem() { Id = 30, Status = Statuses[1], Person = Persons[4], Title = "Leap year rules" });
-                    _workItems.Add(new WorkItem() { Id = 32, Status = Statuses[2], Person = Persons[0], Title = "Modbus driver error message handling" });
-                    _workItems.Add(new WorkItem() { Id = 36, Status = Statuses[0], Person = Persons[1], Title = "Color coding in the editor" });
-                    _workItems.Add(new WorkItem() { Id = 37, Status = Statuses[1], Person = Persons[3], Title = "Customizable activation function" });
-                    _workItems.Add(new WorkItem() { Id = 38, Status = Statuses[2], Person = Persons[4], Title = "Latex display in the output" });
-                    _workItems.Add(new WorkItem() { Id = 80, Status = Statuses[0], Person = Persons[0], Title = "Expression tree filter for search" });
-                    _workItems.Add(new WorkItem() { Id = 81, Status = Statuses[1], Person = Persons[1], Title = "Starts interactive session" });
-                    _workItems.Add(new WorkItem() { Id = 82, Status = Statuses[2], Person = Persons[2], Title = "Add answers to overleaf" });
+                    for (int i = 1; i < 12; i++)
+                    {
+                        _workItems.Add(new WorkItem() { Id = _rnd.Next(10, 99), Status = Statuses[_rnd.Next(0, 3)], User = Users[_rnd.Next(0, 5)], Title = _faker.Hacker.Phrase() });
+                    }
                 }
                 return _workItems;
             }
         }
 
-        private List<Person> _persons;
+        private List<User> _users;
 
-        public List<Person> Persons
+        public List<User> Users
         {
             get
             {
-                if (_persons == null)
+                if (_users == null)
                 {
-                    _persons = new List<Person>();
-                    _persons.Add(new Person() { Id = 1, GivenName = "Tom", Surname = "Vaughan‏" });
-                    _persons.Add(new Person() { Id = 2, GivenName = "Elizabeth", Surname = "Redman" });
-                    _persons.Add(new Person() { Id = 3, GivenName = "Mike", Surname = "Rabinovich" });
-                    _persons.Add(new Person() { Id = 4, GivenName = "Kate", Surname = "Huber" });
-                    _persons.Add(new Person() { Id = 5, GivenName = "Luke", Surname = "Schrodinger" });
+                    _users = new List<User>();
+                    for (int i = 1; i < 6; i++)
+                    {
+                        _users.Add(new User() { Id = i, GivenName = _faker.Name.FirstName(), Surname = _faker.Name.LastName() });
+                    }
                 }
-                return _persons;
+                return _users;
             }
         }
 

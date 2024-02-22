@@ -22,18 +22,17 @@ namespace ScrollToSelectedItem
         {
             if (sender is DataGrid)
             {
-                DataGrid dataGrid = (sender as DataGrid);
-                if (dataGrid.SelectedItem != null)
+                DataGrid? dataGrid = sender as DataGrid;
+                if (dataGrid?.SelectedItem != null)
                 {
-                    dataGrid.Dispatcher.BeginInvoke(
-                        (Action)(() =>
+                    dataGrid.Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        dataGrid.UpdateLayout();
+                        if (dataGrid.SelectedItem != null)
                         {
-                            dataGrid.UpdateLayout();
-                            if (dataGrid.SelectedItem !=
-                            null)
-                                dataGrid.ScrollIntoView(
-                                dataGrid.SelectedItem);
-                        }));
+                            dataGrid.ScrollIntoView(dataGrid.SelectedItem);
+                        }
+                    }));
                 }
             }
         }

@@ -22,18 +22,17 @@ namespace ScrollToSelectedItem
         {
             if (sender is ListBox)
             {
-                ListBox listBox = (sender as ListBox);
-                if (listBox.SelectedItem != null)
+                ListBox? listBox = sender as ListBox;
+                if (listBox?.SelectedItem != null)
                 {
-                    listBox.Dispatcher.BeginInvoke(
-                        (Action)(() =>
+                    listBox.Dispatcher.BeginInvoke((Action)(() =>
+                    {
+                        listBox.UpdateLayout();
+                        if (listBox.SelectedItem != null)
                         {
-                            listBox.UpdateLayout();
-                            if (listBox.SelectedItem !=
-                            null)
-                                listBox.ScrollIntoView(
-                                listBox.SelectedItem);
-                        }));
+                            listBox.ScrollIntoView(listBox.SelectedItem);
+                        }
+                    }));
                 }
             }
         }

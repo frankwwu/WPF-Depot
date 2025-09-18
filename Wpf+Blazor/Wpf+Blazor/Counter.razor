@@ -1,0 +1,61 @@
+﻿@page "/counter"
+@using Microsoft.JSInterop
+
+<h1>Enhanced Counter</h1>
+
+<p>Current count: <strong>@currentCount</strong></p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">➕ Click me</button>
+<button class="btn btn-danger ms-2" @onclick="ResetCount">🔄 Reset</button>
+
+<hr />
+
+<h3>Set Custom Step</h3>
+<input type="number" @bind="step" class="form-control w-25" />
+<p>Step value: @step</p>
+
+<hr />
+
+<h3>Show History</h3>
+@if (history.Any())
+{
+    <ul>
+        @foreach (var value in history)
+        {
+            <li>@value</li>
+        }
+    </ul>
+}
+else
+{
+    <p><em>No history yet.</em></p>
+}
+
+<hr />
+
+<button class="btn btn-secondary" @onclick="ShowAlert">📢 Show Alert via JS</button>
+
+@code {
+    private int currentCount = 0;
+    private int step = 1;
+    private List<int> history = new();
+
+    private void IncrementCount()
+    {
+        currentCount += step;
+        history.Add(currentCount);
+    }
+
+    private void ResetCount()
+    {
+        currentCount = 0;
+        history.Clear();
+    }
+
+    [Inject] private IJSRuntime JS { get; set; }
+
+    private async Task ShowAlert()
+    {
+        await JS.InvokeVoidAsync("alert", $"Current count is {currentCount}");
+    }
+}

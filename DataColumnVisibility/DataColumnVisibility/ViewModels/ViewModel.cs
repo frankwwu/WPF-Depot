@@ -1,62 +1,56 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Data;
-using DataColumnVisibility.Models;
+﻿using DataColumnVisibility.Models;
 using DataColumnVisibility.Services;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Data;
 
 namespace DataColumnVisibility.ViewModels
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        private IDataService dataService;
+        private IDataService _dataService;
         private readonly ObservableCollection<DataItem> _model;
         static DataGridContextHelper dc = new DataGridContextHelper();
 
-        public ViewModel()
+        public ViewModel(IDataService dataService)
         {
-            dataService = new DataService();
+            _dataService = dataService;
             _model = dataService.GetModel();
             DataItemsCV = new ListCollectionView(_model);
         }
 
         public ICollectionView DataItemsCV { get; private set; }
 
-        private bool isIdColVisible = true;
+        private bool _isIdColVisible = true;
 
         public bool IsIdColVisible
         {
-            get
-            {
-                return isIdColVisible;
-            }
+            get => _isIdColVisible;
             set
             {
-                isIdColVisible = value;
-                NotifyPropertyChanged("IsIdColVisible");
+                _isIdColVisible = value;
+                NotifyPropertyChanged();
             }
         }
 
-        private bool isNameColVisible = true;
+        private bool _isNameColVisible = true;
 
         public bool IsNameColVisible
         {
-            get
-            {
-                return isNameColVisible;
-            }
+            get => _isNameColVisible;
             set
             {
-                isNameColVisible = value;
-                NotifyPropertyChanged("IsNameColVisible");
+                _isNameColVisible = value;
+                NotifyPropertyChanged();
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void NotifyPropertyChanged(string propertyName)
+        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

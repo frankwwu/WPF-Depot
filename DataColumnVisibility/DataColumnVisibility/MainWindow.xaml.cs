@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using DataColumnVisibility.ViewModels;
 
 namespace DataColumnVisibility
 {
@@ -11,7 +10,6 @@ namespace DataColumnVisibility
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new ViewModel();
         }
     }
 }

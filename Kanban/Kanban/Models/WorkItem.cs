@@ -1,15 +1,15 @@
-﻿using System.ComponentModel;
+using Kanban.Mvvm;
 
-namespace Kanban.Models
+namespace Kanban.Models;
+
+public sealed class WorkItem(int id, string title, WorkItemStatus status = WorkItemStatus.New, User? assignee = null)
+    : ObservableObject
 {
-    public class WorkItem
-    {
-        public int Id { get; set; }
+    public int Id { get; } = id;
 
-        public string Title { get; set; }
-  
-        public Status Status { get; set; }
+    public string Title { get; set => SetProperty(ref field, value); } = title;
 
-        public User User { get; set; }
-    }
+    public WorkItemStatus Status { get; set => SetProperty(ref field, value); } = status;
+
+    public User? Assignee { get; set => SetProperty(ref field, value); } = assignee;
 }

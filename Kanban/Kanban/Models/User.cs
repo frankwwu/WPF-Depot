@@ -1,35 +1,22 @@
-﻿
-namespace Kanban.Models
+using System.Globalization;
+using System.Text.Json.Serialization;
+
+namespace Kanban.Models;
+
+public sealed record User(int Id, string GivenName, string Surname)
 {
-    public class User
+    [JsonIgnore]
+    public string FullName => $"{GivenName} {Surname}".Trim();
+
+    /// <summary>Upper-case first letters of the given name and surname, e.g. "AL".</summary>
+    [JsonIgnore]
+    public string Initials => string.Concat(FirstLetter(GivenName), FirstLetter(Surname));
+
+    private static string FirstLetter(string name)
     {
-        public int Id { get; set; }
-
-        public string GivenName { get; set; }
-
-        public string Surname { get; set; }
-
-        public string FullName
-        {
-            get
-            {
-                return string.Format("{0} {1}", GivenName, Surname);
-            }
-        }
-
-        public string Initial
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(GivenName) && !string.IsNullOrEmpty(Surname))
-                {
-                    return string.Format("{0}{1}", GivenName[0], Surname[0]);
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-        }
+        var trimmed = name.Trim();
+        return trimmed.Length == 0
+            ? string.Empty
+            : new StringInfo(trimmed).SubstringByTextElements(0, 1).ToUpperInvariant();
     }
 }

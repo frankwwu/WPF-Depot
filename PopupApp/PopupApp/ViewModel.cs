@@ -1,76 +1,91 @@
-﻿using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Collections.Generic;
-using System.Windows.Media;
-using System;
+using System.Linq;
+using System.Windows.Input;
 
 namespace PopupApp
 {
-    public class ViewModel : INotifyPropertyChanged
+    public class ViewModel : ViewModelBase
     {
-        public ViewModel()
+        public ViewModel() : this(new MyDataService()) { }
+
+        public ViewModel(MyDataService service)
         {
-            var service = new MyDataService();
-            Data = service.Data;
+            Data = new ObservableCollection<MyData>(service.Data);
             BrushList = service.BrushList;
+            selectedBrush = BrushList.FirstOrDefault(b => b.Name == nameof(System.Windows.Media.Brushes.Black))
+                            ?? BrushList.First();
+
+            foreach (var item in Data)
+                item.PropertyChanged += OnItemPropertyChanged;
+
+            SelectAllCommand = new RelayCommand(() => SetAll(true), () => SelectedCount < Data.Count);
+            ClearCommand = new RelayCommand(() => SetAll(false), () => SelectedCount > 0);
+            CloseCommand = new RelayCommand(() => IsItemsControlOpen = false);
         }
 
-        public List<MyData> Data { get; set; }
+        public ObservableCollection<MyData> Data { get; }
 
-        public List<Tuple<string, Brush>> BrushList { get; private set; }
+        public IReadOnlyList<NamedBrush> BrushList { get; }
 
-        private Tuple<string, Brush> selectedBrush;
+        public ICommand SelectAllCommand { get; }
+        public ICommand ClearCommand { get; }
+        public ICommand CloseCommand { get; }
 
-        public Tuple<string, Brush> SelectedBrush
+        private NamedBrush selectedBrush;
+        public NamedBrush SelectedBrush
         {
-            get
-            {
-                return selectedBrush;
-            }
+            get => selectedBrush;
             set
             {
-                selectedBrush = value;
-                NotifyPropertyChanged("SelectedBrush");
+                // ListBox pushes null when the selection is cleared; keep the last real colour instead.
+                if (value != null)
+                    SetProperty(ref selectedBrush, value);
             }
         }
 
         private string text = "Popup window example...";
         public string Text
         {
-            get
-            {
-                return text;
-            }
-            set
-            {
-                text = value;
-                NotifyPropertyChanged("Text");
-            }
+            get => text;
+            set => SetProperty(ref text, value);
         }
 
         private bool isItemsControlOpen;
         public bool IsItemsControlOpen
         {
+            get => isItemsControlOpen;
+            set => SetProperty(ref isItemsControlOpen, value);
+        }
+
+        public int SelectedCount => Data.Count(d => d.IsSelected);
+
+        /// <summary>Text shown on the drop-down buttons.</summary>
+        public string SelectionSummary
+        {
             get
             {
-                return isItemsControlOpen;
-            }
-            set
-            {
-                isItemsControlOpen = value;
-                NotifyPropertyChanged("IsItemsControlOpen");
+                int count = SelectedCount;
+                if (count == 0) return "None selected";
+                if (count == Data.Count) return $"All selected ({count})";
+                return $"{count} of {Data.Count} selected";
             }
         }
 
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string propertyName)
+        private void SetAll(bool value)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            foreach (var item in Data)
+                item.IsSelected = value;
         }
 
-        #endregion
+        private void OnItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MyData.IsSelected))
+            {
+                OnPropertyChanged(nameof(SelectedCount));
+                OnPropertyChanged(nameof(SelectionSummary));
+            }
+        }
     }
 }
